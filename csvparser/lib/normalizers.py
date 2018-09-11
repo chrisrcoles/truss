@@ -3,7 +3,7 @@ from typing import Union
 
 from csvparser.utils import get_time, get_time_delta, get_duration_over_24_hours, parse_time, parse_date, localize_timezone
 from .exceptions import ExceptionsManager, NException, NEXCEPTION
-from .validators import valid_duration, valid, valid_timestamp
+from .validators import valid_duration, valid, valid_timestamp, valid_iso_format_timestamp
 
 exceptions_manager = ExceptionsManager.getInstance()
 
@@ -90,6 +90,8 @@ def normalize_zipcode(zipcode: str) -> str:
 
 def normalize_timestamp(timestamp: str) -> Union[datetime.time, str]:
     if valid_timestamp(timestamp):
+        if valid_iso_format_timestamp(timestamp):
+            return timestamp
         try:
             date = parse_date(timestamp)
             updated_time = localize_timezone(date, 'US/Pacific', 'US/Eastern')

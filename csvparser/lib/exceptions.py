@@ -1,7 +1,7 @@
 from enum import Enum
 
-from .parser import write_to_stdout, write_new_line
-
+class TransformFileMustExist(BaseException):
+    pass
 
 class NEXCEPTION(Enum):
     TIMESTAMP = 1
@@ -51,13 +51,13 @@ class ExceptionsManager:
 
     def raise_exception_warnings(self):
         if not len(self.exceptions):
-            return write_to_stdout('\nCSV Parsed without errors.\n')
+            return print('\nCSV Parsed without errors.\n')
 
-        write_new_line()
+        print('\n')
         for exception in self.exceptions:
-            write_to_stdout('Exception for `{}` found for value `{}.`'.format(exception.attr, exception.val))
-        write_new_line()
-        write_to_stdout('All rows with errors have been dropped.')
-        write_new_line()
+            print('Exception for `{}` found for value `{}.`'.format(exception.attr, exception.val))
+        print('\nAll rows with errors have been dropped.\n')
+
+
 
 ExceptionsManager()

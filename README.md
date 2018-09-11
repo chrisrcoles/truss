@@ -15,8 +15,9 @@
 
 
 # Running the Project
-1. `cat sample | ./main.py > output.csv`
-2. `./main.py sample.csv > output.csv`
+ `./main.py <file_to_transform> <file_to_write>`
+
+Upon running the start command, the CSV file will be parsed, transformed, and normalized. If there are any exceptions found, they will be printed.
 
 # Run Tests
 1. Run all tests `python -m unittest discover tests`

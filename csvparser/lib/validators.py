@@ -23,3 +23,12 @@ def valid(attribute: str) -> bool:
 
     return valid
 
+
+def valid_iso_format_timestamp(timestamp: str) -> bool:
+    valid = False
+    match = re.match(r'(\d{4})-(\d{2})-(\d{2})T(\d{2})\:(\d{2})\:(\d{2})-(\d{2})\:(\d{2})', timestamp)
+
+    if match:
+        valid = True
+
+    return valid

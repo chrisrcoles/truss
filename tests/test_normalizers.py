@@ -19,6 +19,7 @@ class NormalizersTest(unittest.TestCase):
         self.assertEqual(normalize_timestamp('4/1/11 11:00:00 AM'), '2011-04-01T14:00:00-04:00')
         self.assertEqual(normalize_timestamp('12/31/16 11:59:59 PM'), '2017-01-01T02:59:59-05:00')
         self.assertEqual(normalize_timestamp(''), '')
+        self.assertEqual(normalize_timestamp('2010-05-12T19:48:12-04:00'), '2010-05-12T19:48:12-04:00')
         self.assertEqual(normalize_timestamp('some gibberish'), '')
 
 
