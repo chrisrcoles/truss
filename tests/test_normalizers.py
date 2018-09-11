@@ -19,7 +19,7 @@ class NormalizersTest(unittest.TestCase):
         self.assertEqual(normalize_timestamp('4/1/11 11:00:00 AM'), '2011-04-01T14:00:00-04:00')
         self.assertEqual(normalize_timestamp('12/31/16 11:59:59 PM'), '2017-01-01T02:59:59-05:00')
         self.assertEqual(normalize_timestamp(''), '')
-        self.assertEqual(normalize_timestamp('some gibberish'), '') # TODO fix
+        self.assertEqual(normalize_timestamp('some gibberish'), '')
 
 
     def test_normalize_address(self):
@@ -54,7 +54,3 @@ class NormalizersTest(unittest.TestCase):
         self.assertEqual(normalize_notes('This is some Unicode right h�xxx ü ¡! 😀'), 'This is some Unicode right h�xxx ü ¡! 😀')
         self.assertEqual(normalize_notes('1:11:11.123'), '1:11:11.123')
         self.assertEqual(normalize_notes(''), '')
-
-
-if __name__ == '__main__':
-    unittest.main()
