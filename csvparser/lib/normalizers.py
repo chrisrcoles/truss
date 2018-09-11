@@ -14,7 +14,6 @@ def normalize_duration(time: str, type: str) -> str:
 
         try:
             normalized_time = str(parse_time(time))
-
             if '.' in normalized_time:
                 return normalized_time
             else:
@@ -26,7 +25,6 @@ def normalize_duration(time: str, type: str) -> str:
     else:
         if type == 'foo':
             return exceptions_manager.handle_exception(NException(attr=NEXCEPTION.FOO_DURATION, val=time))
-
         if type == 'bar':
             return exceptions_manager.handle_exception(NException(attr=NEXCEPTION.BAR_DURATION, val=time))
 
@@ -52,7 +50,6 @@ def normalize_total_duration(foo: str, bar: str) -> str:
     else:
         if not foo_valid:
             return exceptions_manager.handle_exception(NException(attr=NEXCEPTION.TOTAL_DURATION, val=foo))
-
         if not bar_valid:
             return exceptions_manager.handle_exception(NException(attr=NEXCEPTION.TOTAL_DURATION, val=bar))
 
