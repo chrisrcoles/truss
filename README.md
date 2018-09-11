@@ -1,8 +1,7 @@
 # Truss Software Engineering Coding Challenge
 
-# Solution Outline
+# [Solution Outline](https://github.com/chrisrcoles/truss/blob/master/docs/challenge.MD)
 
-[Challenge](https://github.com/chrisrcoles/truss/blob/master/docs/challenge.MD)
 
 # Setting up the Application
 
