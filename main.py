@@ -4,7 +4,7 @@ from typing import Sequence
 
 import sys
 
-from csvparser.lib.exceptions import ExceptionsManager, TransformFileMustExist
+from csvparser.lib.exceptions import ExceptionsManager, TransformFileMustExistError
 from csvparser.lib.normalizers import normalize_duration, normalize_timestamp, normalize_address, normalize_zipcode, \
     normalize_name, normalize_total_duration, normalize_notes
 from csvparser.lib.parser import get_csv_reader, get_csv_writer
@@ -30,13 +30,13 @@ def normalize_csv_body(is_body: bool, row: Sequence[str], new_csv) -> None:
             foo_duration, bar_duration, normalize_total_duration(foo_duration, bar_duration), normalize_notes(notes) ])
 
 
-def normalize_csv(read_file: str, write_file) -> str:
+def normalize_csv(read_file: str, write_file) -> None:
     for idx, row in enumerate(read_file):
         normalize_csv_header(idx == 0, row, write_file)
         normalize_csv_body(idx != 0 and len(row) != 0, row, write_file)
 
 
-def normalize() -> str:
+def normalize() -> None:
     file_to_write = 'output.csv'
 
     if len(sys.argv) > 1:
@@ -51,7 +51,7 @@ def normalize() -> str:
                     return normalize_csv(get_csv_reader(csvfile), get_csv_writer(new_csvfile))
         raise FileNotFoundError
     else:
-        raise TransformFileMustExist
+        raise TransformFileMustExistError
 
 
 

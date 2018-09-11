@@ -1,6 +1,6 @@
 from enum import Enum
 
-class TransformFileMustExist(BaseException):
+class TransformFileMustExistError(BaseException):
     pass
 
 class NEXCEPTION(Enum):
