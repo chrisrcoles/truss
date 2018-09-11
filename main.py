@@ -27,14 +27,8 @@ def normalize_csv_body(is_body: bool, row: Sequence[str]):
         bar_duration = normalize_duration(bar, 'bar')
 
         write_body(
-            foo_duration,
-            bar_duration,
-            normalize_timestamp(timestamp),
-            normalize_address(address),
-            normalize_zipcode(zipcode),
-            normalize_name(full_name),
-            normalize_total_duration(foo_duration, bar_duration),
-            normalize_notes(notes)
+            foo_duration, bar_duration, normalize_timestamp(timestamp), normalize_address(address), normalize_zipcode(zipcode),
+            normalize_name(full_name), normalize_total_duration(foo_duration, bar_duration), normalize_notes(notes)
         )
 
 
@@ -44,13 +38,13 @@ def normalize_csv(csv_file: str) -> str:
         normalize_csv_body(idx != 0 and len(row) != 0, row)
 
 
-
 def normalize():
     if len(sys.argv) > 1:
         if os.path.exists(sys.argv[1]):
             with open(sys.argv[1], encoding="utf8", errors='replace') as csvfile:
                 return normalize_csv(csv_file=csv.reader(csvfile, delimiter=','))
-
+        else:
+            raise FileNotFoundError
     return normalize_csv(csv_file=convert_to_csv(string=create_string(stream=get_stdin_buffer())))
 
 
