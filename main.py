@@ -13,12 +13,12 @@ from csvparser.lib.parser import write_header, write_body, get_stdin_buffer, con
 exceptions_manager = ExceptionsManager.getInstance()
 
 
-def normalize_csv_header(is_header: bool, row: Sequence[str]):
+def normalize_csv_header(is_header: bool, row: Sequence[str]) -> None:
     if is_header:
         write_header(row)
 
 
-def normalize_csv_body(is_body: bool, row: Sequence[str]):
+def normalize_csv_body(is_body: bool, row: Sequence[str]) -> None:
     if is_body:
         timestamp, address, zipcode, full_name, foo, bar, total, notes = \
             row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7]
@@ -38,7 +38,7 @@ def normalize_csv(csv_file: str) -> str:
         normalize_csv_body(idx != 0 and len(row) != 0, row)
 
 
-def normalize():
+def normalize() -> str:
     if len(sys.argv) > 1:
         if os.path.exists(sys.argv[1]):
             with open(sys.argv[1], encoding="utf8", errors='replace') as csvfile:
