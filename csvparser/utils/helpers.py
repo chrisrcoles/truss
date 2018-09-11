@@ -18,7 +18,6 @@ class CustomTime(object):
 def get_time(time: str) -> Union[CustomTime, datetime.time]:
     if not time:
         return parse_time('00:00:00.000000')
-
     try:
         return parse_time(time)
     except ValueError as e:
@@ -49,9 +48,7 @@ def get_duration_over_24_hours(total: Sequence[str]) -> str:
 def localize_timezone(date: datetime.datetime, old_timezone: str, new_timezone) -> datetime.time:
     with_old_timezone = pytz.timezone(old_timezone)
     with_new_timezone = pytz.timezone(new_timezone)
-
     date_old_timezone = with_old_timezone.localize(date)
-
     return date_old_timezone.astimezone(with_new_timezone)
 
 

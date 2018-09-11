@@ -40,7 +40,6 @@ def normalize_total_duration(foo: str, bar: str) -> str:
         bar_time = get_time(bar)
 
         foo_time_timedelta = get_time_delta(foo_time.hour, foo_time.minute, foo_time.second, foo_time.microsecond)
-
         bar_time_timedelta = get_time_delta(bar_time.hour, bar_time.minute, bar_time.second, bar_time.microsecond)
 
         total_timedelta = foo_time_timedelta + bar_time_timedelta
@@ -49,9 +48,7 @@ def normalize_total_duration(foo: str, bar: str) -> str:
         if len(total_split) == 1:
             return str(total_timedelta)
         elif len(total_split) == 2:
-
             return get_duration_over_24_hours(total_split)
-
     else:
         if not foo_valid:
             return exceptions_manager.handle_exception(NException(attr=NEXCEPTION.TOTAL_DURATION, val=foo))
