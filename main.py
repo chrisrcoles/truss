@@ -37,11 +37,11 @@ def normalize_csv(read_file: str, write_file) -> str:
 
 
 def normalize() -> str:
-
     file_to_write = 'output.csv'
 
     if len(sys.argv) > 1:
         file_to_transform = sys.argv[1]
+
         if len(sys.argv) > 2:
             file_to_write = sys.argv[2]
 
@@ -49,11 +49,9 @@ def normalize() -> str:
             with open(file_to_write, mode='w+') as new_csvfile:
                 with open(file_to_transform, encoding='utf8', errors='replace') as csvfile:
                     return normalize_csv(get_csv_reader(csvfile), get_csv_writer(new_csvfile))
-        else:
-            raise FileNotFoundError
+        raise FileNotFoundError
     else:
         raise TransformFileMustExist
-
 
 
 
