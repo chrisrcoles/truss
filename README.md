@@ -4,11 +4,25 @@
 
 [Challenge](https://github.com/chrisrcoles/truss/blob/master/docs/challenge.MD)
 
-## Run
+# Setting up the Application
 
-```npm run start```
+1. Clone project by running 
+- `git clone https://github.com/chrisrcoles/truss.git` 
+2. Install and start [Docker](https://docs.docker.com/install/)
+3. Build Docker Image 
+- `docker build -t truss-app .`
+4. Run Python Process in Docker Container
+- `docker run -it --rm --name truss-running-app truss-app`
 
-# Application Artchitecture
+
+# Running the Project
+1. `cat sample | ./main.py > output.csv`
+2. `./main.py sample.csv > output.csv`
+
+# Run Tests
+`python -m unittest discover tests`
+
+# Application Architecture
 
 React Native iOS and Android native applications
 
@@ -26,24 +40,6 @@ Directory structure
  - `truss/main.py` - Main executable script
  - `truss/Dockerfile` - Dockerfile
  
- 
- # Setting up the Application
- 
- 1. Clone project by running 
- - `git clone https://github.com/chrisrcoles/truss.git` 
- 2. Install and start [Docker](https://docs.docker.com/install/)
- 3. Build Docker Image 
- - `docker build -t truss-app .`
- 4. Run Python Process in Docker Container
- - `docker run -it --rm --name truss-running-app truss-app`
- 
- 
- # Running the Project
- `cat sample | ./main.py > output.csv`
- `./main.py sample.csv > output.csv`
- 
- # Run Tests
- `python -m unittest discover tests`
  
  
   
