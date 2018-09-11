@@ -24,7 +24,7 @@
 
 # Application Architecture
 
-React Native iOS and Android native applications
+### Tools: Python 3.6, Docker
 
 Directory structure
  - `truss/csvparser` - All code for the CSV Parser, including library and utility helpers
