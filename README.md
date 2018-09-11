@@ -20,7 +20,8 @@
 2. `./main.py sample.csv > output.csv`
 
 # Run Tests
-`python -m unittest discover tests`
+1. Run all tests `python -m unittest discover tests`
+2. Run a specific test `python -m unittest tests/<test_file.py>`
 
 # Application Architecture
 
