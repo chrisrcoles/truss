@@ -19,6 +19,8 @@
 
 Upon running the start command, the CSV file will be parsed, transformed, and normalized. If there are any exceptions found, they will be printed.
 
+If no file to write is explicitly noted, the normalized CSV will be printed to `output.csv` 
+
 # Run Tests
 1. Run all tests `python -m unittest discover tests`
 2. Run a specific test `python -m unittest tests/<test_file.py>`

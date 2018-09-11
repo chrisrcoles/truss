@@ -47,7 +47,7 @@ def normalize() -> str:
 
         if os.path.exists(file_to_transform):
             with open(file_to_write, mode='w+') as new_csvfile:
-                with open(file_to_transform, encoding="utf8", errors='replace') as csvfile:
+                with open(file_to_transform, encoding='utf8', errors='replace') as csvfile:
                     return normalize_csv(get_csv_reader(csvfile), get_csv_writer(new_csvfile))
         else:
             raise FileNotFoundError
