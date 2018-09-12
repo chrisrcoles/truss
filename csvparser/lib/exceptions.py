@@ -1,7 +1,5 @@
 from enum import Enum
 
-class TransformFileNotFoundError(BaseException):
-    pass
 
 class NEXCEPTION(Enum):
     TIMESTAMP = 1

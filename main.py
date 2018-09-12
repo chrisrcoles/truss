@@ -5,7 +5,7 @@ from typing import Sequence
 
 import sys
 
-from csvparser.lib.exceptions import ExceptionsManager, TransformFileNotFoundError
+from csvparser.lib.exceptions import ExceptionsManager
 from csvparser.lib.normalizers import normalize_duration, normalize_timestamp, normalize_address, normalize_zipcode, \
     normalize_name, normalize_total_duration, normalize_notes
 from csvparser.lib.parser import get_csv_reader, get_csv_writer
@@ -33,29 +33,29 @@ def normalize_csv_body(is_body: bool, row: Sequence[str], csv_writer: csv.writer
 
 def normalize_csv(read_file: str, csv_writer: csv.writer) -> None:
     for idx, row in enumerate(read_file):
-        yield row
         normalize_csv_header(idx == 0, row, csv_writer)
         normalize_csv_body(idx != 0 and len(row) != 0, row, csv_writer)
+
 
 
 def normalize() -> None:
     file_to_write = 'output.csv'
 
-    if len(sys.argv) > 1:
-        file_to_transform = sys.argv[1]
+    if not len(sys.argv) > 1:
+        raise FileNotFoundError
 
-        if len(sys.argv) > 2:
-            file_to_write = sys.argv[2]
+    file_to_transform = sys.argv[1]
 
-        if os.path.exists(file_to_transform):
-            with open(file_to_write, mode='w+') as new_csvfile:
-                with open(file_to_transform, encoding='utf8', errors='replace') as csvfile:
-                    iter_normalize_csv = iter(normalize_csv(get_csv_reader(csvfile), get_csv_writer(new_csvfile)))
-                    next(iter_normalize_csv)
-        else:
-            raise FileNotFoundError
-    else:
-        raise TransformFileNotFoundError
+    if not os.path.exists(file_to_transform):
+        raise FileNotFoundError
+
+    if len(sys.argv) > 2:
+        file_to_write = sys.argv[2]
+
+    with open(file_to_write, mode='w+') as new_csvfile:
+        with open(file_to_transform, encoding='utf8', errors='replace') as csvfile:
+            normalize_csv(get_csv_reader(csvfile), get_csv_writer(new_csvfile))
+
 
 
 
