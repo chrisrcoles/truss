@@ -19,10 +19,10 @@ def get_csv_reader(string: Csvstream) -> str:
     return csv.reader(string, delimiter=',')
 
 
-def get_csv_writer(file: TextIOWrapper):
+def get_csv_writer(file: TextIOWrapper) -> csv.writer:
     return csv.writer(file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
 
-def write_to_csv(writer, string: str) -> str:
+def write_to_csv(writer, string: str) -> None:
     writer.write(string)
 
 
