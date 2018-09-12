@@ -5,7 +5,7 @@ from typing import Sequence
 
 import sys
 
-from csvparser.lib.exceptions import ExceptionsManager, TransformFileMustExistError
+from csvparser.lib.exceptions import ExceptionsManager, TransformFileNotFoundError
 from csvparser.lib.normalizers import normalize_duration, normalize_timestamp, normalize_address, normalize_zipcode, \
     normalize_name, normalize_total_duration, normalize_notes
 from csvparser.lib.parser import get_csv_reader, get_csv_writer
@@ -55,7 +55,7 @@ def normalize() -> None:
         else:
             raise FileNotFoundError
     else:
-        raise TransformFileMustExistError
+        raise TransformFileNotFoundError
 
 
 
