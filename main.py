@@ -43,7 +43,7 @@ def normalize() -> None:
 
     if len(sys.argv) > 1:
         file_to_transform = sys.argv[1]
-        print(os.path.exists(file_to_transform))
+
         if len(sys.argv) > 2:
             file_to_write = sys.argv[2]
 
