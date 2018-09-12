@@ -33,6 +33,7 @@ def normalize_csv_body(is_body: bool, row: Sequence[str], csv_writer: csv.writer
 
 def normalize_csv(read_file: str, csv_writer: csv.writer) -> None:
     for idx, row in enumerate(read_file):
+        yield row
         normalize_csv_header(idx == 0, row, csv_writer)
         normalize_csv_body(idx != 0 and len(row) != 0, row, csv_writer)
 
@@ -42,17 +43,19 @@ def normalize() -> None:
 
     if len(sys.argv) > 1:
         file_to_transform = sys.argv[1]
-
+        print(os.path.exists(file_to_transform))
         if len(sys.argv) > 2:
             file_to_write = sys.argv[2]
 
         if os.path.exists(file_to_transform):
             with open(file_to_write, mode='w+') as new_csvfile:
                 with open(file_to_transform, encoding='utf8', errors='replace') as csvfile:
-                    return normalize_csv(get_csv_reader(csvfile), get_csv_writer(new_csvfile))
-        raise FileNotFoundError
-
-    raise TransformFileMustExistError
+                    iter_normalize_csv = iter(normalize_csv(get_csv_reader(csvfile), get_csv_writer(new_csvfile)))
+                    next(iter_normalize_csv)
+        else:
+            raise FileNotFoundError
+    else:
+        raise TransformFileMustExistError
 
 
 
