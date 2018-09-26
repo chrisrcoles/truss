@@ -1,14 +1,12 @@
 #!/usr/bin/env python
 import csv
-import os
 from typing import Sequence
 
-import sys
 
 from csvparser.lib.exceptions import ExceptionsManager
 from csvparser.lib.normalizers import normalize_duration, normalize_timestamp, normalize_address, normalize_zipcode, \
     normalize_name, normalize_total_duration, normalize_notes
-from csvparser.lib.parser import get_csv_reader, get_csv_writer
+from csvparser.lib.parser import get_csv_reader, get_csv_writer, get_files
 
 exceptions_manager = ExceptionsManager.getInstance()
 
@@ -39,18 +37,7 @@ def normalize_csv(read_file: str, csv_writer: csv.writer) -> None:
 
 
 def normalize() -> None:
-    file_to_write = 'output.csv'
-
-    if not len(sys.argv) > 1:
-        raise FileNotFoundError
-
-    file_to_transform = sys.argv[1]
-
-    if not os.path.exists(file_to_transform):
-        raise FileNotFoundError
-
-    if len(sys.argv) > 2:
-        file_to_write = sys.argv[2]
+    (file_to_write, file_to_transform) = get_files()
 
     with open(file_to_write, mode='w+') as new_csvfile:
         with open(file_to_transform, encoding='utf8', errors='replace') as csvfile:
